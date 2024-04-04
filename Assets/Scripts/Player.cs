@@ -31,6 +31,10 @@ public class Player : MonoBehaviour
     private Animator heartAnimator2;
     private Animator heartAnimator3;
 
+    public Transform projectileSpawnPoint;
+    public GameObject projectilePrefab;
+    public float projectileSpeed = 10; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,10 +80,10 @@ public class Player : MonoBehaviour
             leo.SetBool("move", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        /* if (Input.GetKeyDown(KeyCode.Space)) {
             System.Random r = new System.Random();
             int i = r.Next(1,4);
-            switch (i) {
+             switch (i) {
                 case 1: 
                     leo.SetBool("attack1" , true);
                     leo.SetBool("attack2" , false);
@@ -98,18 +102,26 @@ public class Player : MonoBehaviour
             }
             
             
-        }
+            
+        } */
 
-        if (Input.GetKeyUp(KeyCode.Space)) {
+        /* if (Input.GetKeyUp(KeyCode.Space)) {
             leo.SetBool("attack3" , false);
             leo.SetBool("attack1" , false);
             leo.SetBool("attack2" , false);
 
         }
+        */
 
         // if the player goes below surface, his health will decrease
-        if (transform.position.y < -10)
+        if (transform.position.y < -10) {
             LoseHealth(1);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            var bullet = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+            bullet.GetComponent<Rigidbody2D>().velocity = projectileSpawnPoint.right * projectileSpeed;
+        }
     }
 
     void Flip()
@@ -161,8 +173,8 @@ public class Player : MonoBehaviour
         switch (health)
         {
             case 0: heart1.SetActive(false); break;
-            case 1: heart2.SetActive(false); ; break;
-            case 2: heart3.SetActive(false); ; break;
+            case 1: heart2.SetActive(false); break;
+            case 2: heart3.SetActive(false); break;
         }
 
         if (health <= 0)
@@ -187,5 +199,6 @@ public class Player : MonoBehaviour
         }
 
         coinText.text = "Souls: " + coin.ToString();
-    }
+    }       
+
 }

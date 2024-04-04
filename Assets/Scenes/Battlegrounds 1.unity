@@ -1991,9 +1991,10 @@ GameObject:
   - component: {fileID: 747760120}
   - component: {fileID: 747760119}
   - component: {fileID: 747760121}
-  - component: {fileID: 747760122}
+  - component: {fileID: 747760123}
+  - component: {fileID: 747760124}
   m_Layer: 0
-  m_Name: SlimeOrange_00000
+  m_Name: Slime1
   m_TagString: Thorns
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2008,7 +2009,7 @@ Transform:
   m_GameObject: {fileID: 747760116}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.38, y: -8.49, z: -1.1390367}
+  m_LocalPosition: {x: -15.5, y: -7.78, z: -1.1390367}
   m_LocalScale: {x: 0.5366, y: 0.6575, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2116,13 +2117,40 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0000037766642, y: -0.499102}
+  m_Offset: {x: -0.0000017772537, y: 0.010368579}
   serializedVersion: 2
-  m_Radius: 2.050899
---- !u!114 &747760122
+  m_Radius: 1.4055709
+--- !u!50 &747760123
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747760116}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!114 &747760124
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2131,9 +2159,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 747760116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd3e49d13697bcf429417b44d7dcc1c9, type: 3}
+  m_Script: {fileID: 11500000, guid: a1deb78ea59a5324cac7813811812e4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  speed: 3
+  playerDamage: 1
+  sightDistance: 100
+  attackInterval: 1
 --- !u!1 &926164745
 GameObject:
   m_ObjectHideFlags: 0
@@ -4789,7 +4824,7 @@ GameObject:
   - component: {fileID: 1707318734}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
