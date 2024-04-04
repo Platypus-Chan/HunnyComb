@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
 
         // grounded = Physics2D.OverlapCircle(groundcheck.position, groundRadius, whatIsGround);
         
-        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+        if (Input.GetKeyDown(KeyCode.UpArrow) && leo.GetBool("jump") != true) {
             mara.AddForce(new Vector2(0, jumpForce));
             leo.SetBool("jump" , true);
             leo.SetBool("idle", false);
@@ -120,7 +120,9 @@ public class Player : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space)) {
             var bullet = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
-            bullet.GetComponent<Rigidbody2D>().velocity = projectileSpawnPoint.right * projectileSpeed;
+
+            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2( (facingRight? 1 : -1) * projectileSpeed, mara.velocity.y);
+            
         }
     }
 
@@ -136,7 +138,7 @@ public class Player : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         //Check the provided Collider2D parameter other to see if it is tagged "PickUp", if it is...
-        if (other.gameObject.CompareTag("Thorns"))
+        if (other.gameObject.CompareTag("Thorns") || other.gameObject.CompareTag("Enemy"))
         {
             LoseHealth(1);
         }

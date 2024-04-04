@@ -4,7 +4,7 @@ using UnityEngine;
  
 public class Lightning : MonoBehaviour
 {
-    public float life = 3;
+    public float life = 1;
  
     void Awake() {
         Destroy(gameObject, life);
