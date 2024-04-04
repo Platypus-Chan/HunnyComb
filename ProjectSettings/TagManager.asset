@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Souls
   - Thorns
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -48,6 +49,9 @@ TagManager:
     locked: 0
   - name: background
     uniqueID: 274779401
+    locked: 0
+  - name: Character
+    uniqueID: 3054350379
     locked: 0
   - name: ground
     uniqueID: 447890833

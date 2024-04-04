@@ -13,8 +13,6 @@ public abstract class Enemy : MonoBehaviour
     public int playerDamage;                            //The amount of food points to subtract from the player when attacking.
     public int sightDistance;                        // how far can it see?
     public int attackInterval;                      // how many cycle between each attack
-    public int maxHealth;
-    protected int health;
 
     protected int interval;
     //private Animator animator;                          //Variable of type Animator to store a reference to the enemy's Animator component.
@@ -41,7 +39,6 @@ public abstract class Enemy : MonoBehaviour
         pauseMovement = false;
 
         interval = 0;
-        health = maxHealth;
     }
 
     protected void Update()
@@ -109,16 +106,6 @@ public abstract class Enemy : MonoBehaviour
             }
         }
     }
-
-    protected virtual void Damage(int dmg)
-    {
-        health -= dmg;
-        if (health <= 0) {
-            Destroy(gameObject);
-        }
-        return;
-    }
-
 
     protected abstract void EnemyAttackAnimation();
 

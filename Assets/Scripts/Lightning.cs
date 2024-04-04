@@ -12,7 +12,8 @@ public class Lightning : MonoBehaviour
  
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Enemy")) {
-            Destroy(collision.gameObject);
+            HealthController control = collision.gameObject.GetComponent<HealthController>();
+            control.TakeDamage(4);
             Destroy(gameObject);
         }
     }
