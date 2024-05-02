@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 //The abstract keyword enables you to create classes and class members that are incomplete and must be implemented in a derived class.
 public abstract class Enemy : MonoBehaviour
@@ -14,13 +15,14 @@ public abstract class Enemy : MonoBehaviour
     public int sightDistance;                        // how far can it see?
     public int attackInterval;                      // how many cycle between each attack
 
-    protected int interval;
     //private Animator animator;                          //Variable of type Animator to store a reference to the enemy's Animator component.
     protected Transform target;                           //Transform to attempt to move toward each turn.
 
     protected Animator anim;
 
     protected bool pauseMovement;
+
+    private float lastAttackedAt = -9999f;
 
     //Protected, virtual functions can be overridden by inheriting classes.
     protected virtual void Start()
@@ -38,10 +40,9 @@ public abstract class Enemy : MonoBehaviour
 
         pauseMovement = false;
 
-        interval = 0;
     }
 
-    protected void Update()
+    protected void FixedUpdate()
     {
         // determine which side to look
         int direction;
@@ -78,8 +79,12 @@ public abstract class Enemy : MonoBehaviour
             // if distance between player and enemy is very close, then player starts to lose health
             if (hit.distance < 1.5f)
             {
-                if (interval > attackInterval)
+                if (Time.time > lastAttackedAt + attackInterval)
                 {
+                    Debug.Log("poo " + lastAttackedAt + " pee " + attackInterval);
+                    //do the attack
+                    lastAttackedAt = Time.time;
+
                     Player p = target.GetComponent<Player>();
 
                     p.LoseHealth(playerDamage);
@@ -91,11 +96,7 @@ public abstract class Enemy : MonoBehaviour
                     // do enemy attack animation
                     EnemyAttackAnimation();
 
-                    // reset interval
-                    interval = 0;
                 }
-                else
-                    interval++;
             }
             else // otherwise start moving towards the player
             {

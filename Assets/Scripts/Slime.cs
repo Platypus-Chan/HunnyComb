@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System;
 using UnityEngine.Events;
@@ -57,4 +57,7 @@ public class Slime : Enemy
         //anim.SetBool("Running", false);
         return;
     }
+
+
+
 }

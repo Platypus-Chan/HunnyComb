@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     public GameObject heart1;
     public GameObject heart2;
     public GameObject heart3;
-    private int health = 3;
+    private int health = 30;
     private int coin = 0;
 
     private Animator leo;
@@ -33,7 +33,9 @@ public class Player : MonoBehaviour
 
     public Transform projectileSpawnPoint;
     public GameObject projectilePrefab;
-    public float projectileSpeed = 10; 
+    public float projectileSpeed = 10;
+
+    public GameObject slimePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -80,39 +82,6 @@ public class Player : MonoBehaviour
             leo.SetBool("move", false);
         }
 
-        /* if (Input.GetKeyDown(KeyCode.Space)) {
-            System.Random r = new System.Random();
-            int i = r.Next(1,4);
-             switch (i) {
-                case 1: 
-                    leo.SetBool("attack1" , true);
-                    leo.SetBool("attack2" , false);
-                    leo.SetBool("attack3" , false);
-                    break;
-                case 2:
-                    leo.SetBool("attack2" , true);
-                    leo.SetBool("attack1" , false);
-                    leo.SetBool("attack3" , false);
-                    break;
-                case 3:
-                    leo.SetBool("attack3" , true);
-                    leo.SetBool("attack1" , false);
-                    leo.SetBool("attack2" , false);
-                    break;
-            }
-            
-            
-            
-        } */
-
-        /* if (Input.GetKeyUp(KeyCode.Space)) {
-            leo.SetBool("attack3" , false);
-            leo.SetBool("attack1" , false);
-            leo.SetBool("attack2" , false);
-
-        }
-        */
-
         // if the player goes below surface, his health will decrease
         if (transform.position.y < -10) {
             LoseHealth(1);
@@ -138,25 +107,22 @@ public class Player : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         //Check the provided Collider2D parameter other to see if it is tagged "PickUp", if it is...
-        if (other.gameObject.CompareTag("Thorns") || other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Thorns"))
         {
-            LoseHealth(1);
+            LoseHealth(10);
+        }
+        else if (other.gameObject.CompareTag("SpawnPoint"))
+        {
+            System.Random rand = new System.Random();
+            int num = rand.Next(1, 4);
+            for (int i = 0; i < num; i++)
+            {
+                Vector3 randomPos = new Vector3(UnityEngine.Random.Range(-num*2, num*2), 0, 0);
+                 Instantiate(slimePrefab, other.gameObject.transform.position + randomPos, Quaternion.identity);
+            }
+            Destroy(other.gameObject);
         }
         /*
-        if (other.gameObject.CompareTag("Souls"))
-        {
-            coin++;
-            other.gameObject.SetActive(false);
-            SetCountText();
-        }
-        else if (other.gameObject.CompareTag("Banana"))
-        {
-            // enable the inner circle collider
-            CircleCollider2D cc2D = other.gameObject.GetComponent<CircleCollider2D>();
-            cc2D.enabled = true;
-
-            LoseHealth(5);
-        }
         else if (other.gameObject.CompareTag("Level1Exit"))
         {
             SceneManager.LoadScene("Scene2");
@@ -171,12 +137,16 @@ public class Player : MonoBehaviour
 
     public void LoseHealth(int damage)
     {
-        health-=damage;
-        switch (health)
+        Debug.Log("We are hurty " + damage + " poo poo " + health);
+        health -= damage;
+        switch (health / 10)
         {
             case 0: heart1.SetActive(false); break;
             case 1: heart2.SetActive(false); break;
-            case 2: heart3.SetActive(false); break;
+            case 2:
+            case 3:
+                heart3.SetActive(false); break;
+            
         }
 
         if (health <= 0)
