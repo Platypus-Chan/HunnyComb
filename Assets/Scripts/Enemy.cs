@@ -81,7 +81,7 @@ public abstract class Enemy : MonoBehaviour
             {
                 if (Time.time > lastAttackedAt + attackInterval)
                 {
-                    Debug.Log("poo " + lastAttackedAt + " pee " + attackInterval);
+                    Debug.Log("last attack " + lastAttackedAt + " attk Interval " + attackInterval);
                     //do the attack
                     lastAttackedAt = Time.time;
 
