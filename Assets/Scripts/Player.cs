@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
 
     public void LoseHealth(int damage)
     {
-        Debug.Log("We are hurty " + damage + " poo poo " + health);
+        Debug.Log("We are hurty " + damage + " hp " + health);
         health -= damage;
         switch (health / 10)
         {
