@@ -11,6 +11,7 @@ public abstract class Enemy : MonoBehaviour
     protected Rigidbody2D rb2D;               //The Rigidbody2D component attached to this object.
 
     public float speed;
+    public float attackRadius = 1.5f;
     public int playerDamage;                            //The amount of food points to subtract from the player when attacking.
     public int sightDistance;                        // how far can it see?
     public int attackInterval;                      // how many cycle between each attack
@@ -44,6 +45,8 @@ public abstract class Enemy : MonoBehaviour
 
     protected void FixedUpdate()
     {
+        EnemyUpdate();
+
         // determine which side to look
         int direction;
         // move towards player
@@ -56,7 +59,7 @@ public abstract class Enemy : MonoBehaviour
         Vector2 start = transform.position;
 
         // Calculate end position based on the direction parameters passed in when calling Move.
-        Vector2 end = start + new Vector2(direction * sightDistance, 0);
+        Vector2 end = start + new Vector2((target.position.x - transform.position.x) * sightDistance / Vector3.Distance(target.position, transform.position), (target.position.y - transform.position.y) * sightDistance / Vector3.Distance(target.position, transform.position));
 
         //Disable the boxCollider so that linecast doesn't hit this object's own collider.
         boxCollider.enabled = false;
@@ -77,7 +80,7 @@ public abstract class Enemy : MonoBehaviour
         if (hit.transform.gameObject.CompareTag("Player"))
         {
             // if distance between player and enemy is very close, then player starts to lose health
-            if (hit.distance < 1.5f)
+            if (hit.distance < attackRadius)
             {
                 if (Time.time > lastAttackedAt + attackInterval)
                 {
@@ -108,8 +111,9 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    protected abstract void EnemyAttackAnimation();
+    protected abstract void EnemyUpdate();
 
+    protected abstract void EnemyAttackAnimation();
 
     protected abstract void EnemyIdleAnimation();
 

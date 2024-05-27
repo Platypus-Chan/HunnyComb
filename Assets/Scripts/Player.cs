@@ -12,18 +12,18 @@ public class Player : MonoBehaviour
     private bool facingRight = true;
     public float jumpForce = 500f;
 
-    public Transform groundcheck;
-    public LayerMask whatIsGround;
-    private bool grounded = true;
-    float groundRadius = 0.2f;
+    // public Transform groundcheck;
+    // public LayerMask whatIsGround;
+    // private bool grounded = true;
+    // float groundRadius = 0.2f;
 
-    public Text healthText;
-    public Text coinText;
+    // public Text healthText;
+    // public Text coinText;
     public GameObject heart1;
     public GameObject heart2;
     public GameObject heart3;
     private int health = 30;
-    private int coin = 0;
+    // private int coin = 0;
 
     private Animator leo;
     private Rigidbody2D mara;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
@@ -46,7 +46,6 @@ public class Player : MonoBehaviour
         heartAnimator1 = heart1.GetComponent<Animator>();
         heartAnimator2 = heart2.GetComponent<Animator>();
         heartAnimator3 = heart3.GetComponent<Animator>();
-        SetCountText();
     }
 
     // Update is called on one frame at a time
@@ -118,16 +117,16 @@ public class Player : MonoBehaviour
             for (int i = 0; i < num; i++)
             {
                 Vector3 randomPos = new Vector3(UnityEngine.Random.Range(-num*2, num*2), 0, 0);
-                 Instantiate(slimePrefab, other.gameObject.transform.position + randomPos, Quaternion.identity);
+                Instantiate(slimePrefab, other.gameObject.transform.position + randomPos, Quaternion.identity);
             }
             Destroy(other.gameObject);
         }
-        /*
-        else if (other.gameObject.CompareTag("Level1Exit"))
+        else if (other.gameObject.CompareTag("Portal"))
         {
-            SceneManager.LoadScene("Scene2");
-            CurrentScene = "Scene2";
+            SceneManager.LoadScene(2);
+            // CurrentScene = "Scene2";
         }
+        /*
         else if (other.gameObject.CompareTag("Level2Exit"))
         {
             SceneManager.LoadScene("Win");
@@ -153,24 +152,8 @@ public class Player : MonoBehaviour
         {
             // SceneManager.LoadScene("GameOver");
             Debug.Log("You died!");
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(3);
         }
     }
-
-    void SetCountText()
-    {
-        //Set the text property of our our countText object to "Count: " followed by the number stored in our count variable.
-        healthText.text = "Lives: " + health.ToString();
-
-        //Check to see if player died
-        if (health <= 0)
-        {
-            // SceneManager.LoadScene("GameOver");
-            Debug.Log("You died!");
-            Application.Quit();
-        }
-
-        coinText.text = "Souls: " + coin.ToString();
-    }       
 
 }
