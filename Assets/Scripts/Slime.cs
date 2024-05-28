@@ -9,7 +9,7 @@ public class Slime : Enemy
     public bool isBoss = false;
     public GameObject slimePrefab;
     private float lastSpawnAt = -9999f;
-    private float spawnInterval = 5f;
+    private float spawnInterval = 8f;
 
     protected override void EnemyAttackAnimation()
     {
