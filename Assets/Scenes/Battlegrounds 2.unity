@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1707318730}
   m_Lens:
     FieldOfView: 57.26561
     OrthographicSize: 5
@@ -188,7 +188,7 @@ Transform:
   m_GameObject: {fileID: 20515399}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.61, y: 5.03, z: -26.15204}
+  m_LocalPosition: {x: -19.908234, y: -4.44144, z: -10.619577}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4631,7 +4631,7 @@ Transform:
   m_GameObject: {fileID: 1003466642}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.39, y: -2.85, z: -26.15204}
+  m_LocalPosition: {x: 14.43, y: -4.44144, z: -26.15204}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5198,7 +5198,6 @@ GameObject:
   - component: {fileID: 1155884947}
   - component: {fileID: 1155884946}
   - component: {fileID: 1155884945}
-  - component: {fileID: 1155884948}
   - component: {fileID: 1155884949}
   - component: {fileID: 1155884950}
   m_Layer: 0
@@ -5276,7 +5275,7 @@ Transform:
   m_GameObject: {fileID: 1155884944}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.00000047683716, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0125, y: 1.2375, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5284,19 +5283,6 @@ Transform:
   - {fileID: 473759137}
   m_Father: {fileID: 20515401}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1155884948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1155884944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 194a054f39a86934ea2d0595bd9ce1cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1707318727}
 --- !u!82 &1155884949
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7696,7 +7682,7 @@ GameObject:
   - component: {fileID: 1707318733}
   - component: {fileID: 1707318734}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8104,7 +8090,7 @@ Transform:
   m_GameObject: {fileID: 1790930693}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6222223, y: -1.7858588, z: 10}
+  m_LocalPosition: {x: 4.16, y: 3.24, z: 10}
   m_LocalScale: {x: 3.1272578, y: 1.8836502, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

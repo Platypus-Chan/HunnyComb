@@ -9,7 +9,7 @@ public class Slime : Enemy
     public bool isBoss = false;
     public GameObject slimePrefab;
     private float lastSpawnAt = -9999f;
-    private float spawnInterval = 8f;
+    private float spawnInterval = 5f;
 
     protected override void EnemyAttackAnimation()
     {
@@ -41,9 +41,14 @@ public class Slime : Enemy
 
                 System.Random rand = new System.Random();
                 int num = rand.Next(1, 5);
+                int direction;
+                if (target.position.x > transform.position.x)
+                    direction = 1;
+                else
+                    direction = -1;
                 for (int i = 0; i < num; i++)
                 {
-                    Vector3 randomPos = new Vector3(UnityEngine.Random.Range(-num * 5, num * 5), UnityEngine.Random.Range(0, 10), 0);
+                    Vector3 randomPos = new Vector3(direction * UnityEngine.Random.Range(5, 25), UnityEngine.Random.Range(0, 10), 0);
                     Instantiate(slimePrefab, transform.position + randomPos, Quaternion.identity);
                 }
 
